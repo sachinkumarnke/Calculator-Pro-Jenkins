@@ -17,8 +17,8 @@ pipeline {
                     dir /b
                     if exist main.py echo main.py found
                     if exist requirements.txt echo requirements.txt found
-                    if exist templates\calculator.html echo templates found
-                    if exist tests\test_app.py echo tests found
+                    if exist templates\\calculator.html echo templates found
+                    if exist tests\\test_app.py echo tests found
                 '''
             }
         }
