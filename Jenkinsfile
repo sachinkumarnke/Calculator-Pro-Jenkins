@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PYTHON_PATH = 'python'
+        PYTHON_PATH = 'C:\\Python\\python.exe'
         FLASK_DEBUG = 'false'
         FLASK_HOST = '127.0.0.1'
         FLASK_PORT = '5000'
@@ -12,7 +12,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Code already available in workspace...'
-                echo 'Skipping SCM checkout for Pipeline script mode'
+                echo 'Verifying project files...'
+                bat '''
+                    dir /b
+                    if exist main.py echo main.py found
+                    if exist requirements.txt echo requirements.txt found
+                    if exist templates\calculator.html echo templates found
+                    if exist tests\test_app.py echo tests found
+                '''
             }
         }
         
@@ -20,10 +27,11 @@ pipeline {
             steps {
                 echo 'Setting up Python virtual environment...'
                 bat '''
-                    python -m venv venv
+                    where python || echo Python not found in PATH
+                    C:\\Users\\SACHIN_202\\AppData\\Local\\Programs\\Python\\Python313\\python.exe -m venv venv || python -m venv venv
                     call venv\\Scripts\\activate.bat
-                    python -m pip install --upgrade pip
-                    pip install -r requirements.txt
+                    venv\\Scripts\\python.exe -m pip install --upgrade pip
+                    venv\\Scripts\\pip.exe install -r requirements.txt
                 '''
             }
         }
@@ -33,7 +41,7 @@ pipeline {
                 echo 'Running unit tests...'
                 bat '''
                     call venv\\Scripts\\activate.bat
-                    python -m pytest tests/ -v --tb=short
+                    venv\\Scripts\\python.exe -m pytest tests/ -v --tb=short
                 '''
             }
             post {
@@ -49,6 +57,8 @@ pipeline {
                 bat '''
                     call venv\\Scripts\\activate.bat
                     echo Build complete - Application ready for deployment
+                    echo Python version:
+                    venv\\Scripts\\python.exe --version
                 '''
             }
         }
