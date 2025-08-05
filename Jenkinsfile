@@ -11,8 +11,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out code from GitHub...'
-                checkout scm
+                echo 'Code already available in workspace...'
+                echo 'Skipping SCM checkout for Pipeline script mode'
             }
         }
         
