@@ -126,9 +126,11 @@ run.bat  # Windows
 ### Jenkins Deployment
 Pipeline automatically:
 1. Creates `deploy/` folder
-2. Copies application files
-3. Generates `run.bat` with environment variables
-4. Provides access instructions
+<img width="1886" height="897" alt="image" src="https://github.com/user-attachments/assets/7b5a09d2-7396-41cc-bcda-3300238f5253" />
+
+3. Copies application files
+4. Generates `run.bat` with environment variables
+5. Provides access instructions
 
 ## 🤝 Contributing
 
@@ -144,7 +146,7 @@ This project is licensed under the MIT License.
 
 ## 🔗 Links
 
-- **GitHub Repository:** [Your Repo URL]
+- **GitHub Repository:** [(https://github.com/sachinkumarnke/Calculator-Pro-Jenkins.git)]
 - **Jenkins Dashboard:** http://localhost:8080
 - **Application:** http://127.0.0.1:5000
 
